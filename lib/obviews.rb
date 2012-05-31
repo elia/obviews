@@ -1,2 +1,1 @@
-module Obviews
-end
+require 'obviews/version'
