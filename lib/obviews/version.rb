@@ -1,0 +1,3 @@
+module Obviews
+  VERSION = "0.0.1"
+end
