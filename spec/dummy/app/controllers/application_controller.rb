@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     blog.posts << post
     @private_instance_var = 'Secret!'
     expose :custom_title
+    expose :author => 'Elia Schito'
   end
   
   

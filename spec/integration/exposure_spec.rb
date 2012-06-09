@@ -14,6 +14,7 @@ describe 'exposure' do
     
     within '.footer' do
       page.should_not have_content('Secret!')
+      page.should     have_content('Elia Schito')
     end
   end
 end

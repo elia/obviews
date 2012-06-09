@@ -1,3 +1,5 @@
+require 'obviews/exposed_assigns'
+
 module Obviews
   module Controller
     extend ActiveSupport::Concern
@@ -7,8 +9,17 @@ module Obviews
       def _exposed_methods
         @_exposed_methods ||= []
       end
+      
+      def _exposed_values
+        @_exposed_values ||= {}
+      end
+      
       def expose *methods
-        self._exposed_methods += methods
+        if methods.size == 1 and methods.first.is_a? Hash
+          _exposed_values.merge!(methods.first)
+        else
+          self._exposed_methods += methods.flatten
+        end
       end
     end
     
@@ -17,25 +28,11 @@ module Obviews
     end
     include Exposure
     
-    
-    class ExposedAssigns < Hash
-      def initialize object, exposed_methods
-        @exposed_methods = exposed_methods
-        super() do |assigns, key|
-          if @exposed_methods.include? key.to_sym
-            assigns[key] = object.send(key)
-          end
-        end
-      end
-      
-      def keys
-        @exposed_methods
-      end
-    end
-    
     def view_assigns
       exposed_methods = (self.class._exposed_methods + _exposed_methods).map(&:to_sym)
-      ExposedAssigns.new self, exposed_methods
+      exposed_values  = (self.class._exposed_values.merge(_exposed_values))
+      exposed_assigns = ExposedAssigns.new self, exposed_methods
+      exposed_assigns.merge! exposed_values
     end
   end
 end
