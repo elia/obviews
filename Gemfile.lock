@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    obviews (0.0.1)
+    obviews (0.1.0)
       rails (~> 3.2.3)
 
 GEM
