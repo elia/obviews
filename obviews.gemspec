@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Obviews::VERSION
   s.authors     = ['Elia Schito']
   s.email       = ['elia@schito.me']
-  s.homepage    = 'http://elia.schito.me'
+  s.homepage    = 'https://elia.github.com/obviews'
   s.summary     = 'Restores the obvious OOP method interface between Rails controllers and views'
   s.description = 'Restores the obvious OOP method interface between Rails controllers and views'
   
