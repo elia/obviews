@@ -1,7 +1,7 @@
 module Obviews
   module View
     extend ActiveSupport::Concern
-    
+
     included do
       alias assign_without_obviews assign
 
@@ -16,8 +16,8 @@ module Obviews
           define_singleton_method(key) { @_assigns[key] }
         end
       end
-      
+
     end
-    
+
   end
 end
